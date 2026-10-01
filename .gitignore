@@ -1,0 +1,57 @@
+
+# Obsidian
+.obsidian/
+
+# Obsidian trash folder
+.trash/
+
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.ppk
+id_rsa*
+id_ed25519*
+*.token
+*token
+*secret*
+*credentials*
+
+
+# certificates and private keys.
+config-*.xml
+config.xml
+
+# VirtualBox disk images, exports and VM state
+*.vdi
+*.vmdk
+*.vhd
+*.ova
+*.ovf
+*.vbox
+*.vbox-prev
+*.sav
+Logs/
+VirtualBox VMs/
+
+
+*.pcap
+*.pcapng
+*.log
+
+
+# Operating system and editor files
+
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
