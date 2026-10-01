@@ -27,6 +27,8 @@
 
 ### Custom Rules Table
 
+*Default deny is currently applied by automatically generated OPNsense rule  - see  Automatically Generated  Rules Table*
+
 *! - Refers to inverted destination*
 
 `Aliases are shown in backticks`
@@ -50,7 +52,7 @@
 
 ### Automatically Generated  Rules Table
 
-These rules are created by OPNsense based on system and interface settings. The table below contains the rules that are currently left in effect. 
+These rules are created by OPNsense based on system and interface settings. The table below contains a summary of the automatically generated rules. 
 
 | **Rule ID** | **Interface**       | **Dir**  | **Proto** | **Source**                                     | **Destination**                   | **Dest Port** | **Action** | **Purpose**                                                                                           | **Controlled By**                                       |
 | ----------- | ------------------- | -------- | --------- | ---------------------------------------------- | --------------------------------- | ------------- | ---------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
