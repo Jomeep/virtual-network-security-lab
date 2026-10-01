@@ -42,7 +42,7 @@ The current environment contains the following logical network segments:
 
 Each segment is implemented using a VirtualBox internal network adapter and a corresponding OPNsense interface. DHCP scopes are configured individually for the segments.
 
-See [Network-architecture](Network-architecture.md) for the topology, IP addressing, firewall policy, and traffic-flow documentation.
+See [Network Architecture](Docs/Architecture/Network-architecture.md) for the topology, IP addressing, firewall policy, and traffic-flow documentation.
 
 ___
 
