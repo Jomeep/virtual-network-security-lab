@@ -16,4 +16,4 @@
 | ---------- | ------------- |
 |            |               |
 
-* For specific configurations see [OPNsense](/Docs/Implementation/OPNsense)
+* For specific configurations see [OPNsense](/Docs/Implementation/OPNsense.md)
