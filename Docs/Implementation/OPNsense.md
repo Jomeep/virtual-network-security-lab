@@ -33,26 +33,29 @@
 
 `Aliases are shown in backticks`
 
-| **Rule ID** | **Interface** | **Proto**              | **Source**     | **Source Port** | **Destination**        | **Destination Port**   | **Action** | **Log** | **Purpose**                         |
-| ----------- | ------------- | ---------------------- | -------------- | --------------- | ---------------------- | ---------------------- | ---------- | ------- | ----------------------------------- |
-| M-1         | Management    | TCP                    | Management Net | Any             | This Firewall          | `Firewall_Admin_Ports` | Allow      | Yes     | Firewall Access                     |
-| M-2         | Management    | TCP                    | Management Net | Any             | `Managed_Subnets`      | `Admin_Ports`          | Allow      | Yes     | Infrastructure<br>Admin             |
-| M-3         | Management    | ICPM<br>(Echo request) | Management Net | Any             | `Internal_Lab_Subnets` | Any                    | Allow      | No      | Troubleshooting                     |
-| M-4         | Management    | TCP/UDP                | Management Net | Any             | 10.10.30.254           | 53                     | Allow      | No      | DNS                                 |
-| M-5         | Management    | TCP                    | Management Net | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | Yes     | Patching & Updates                  |
-| U-1         | Users         | TCP/UDP                | Users Net      | Any             | 10.10.20.254           | 53                     | Allow      | No      | DNS                                 |
-| U-2         | Users         | TCP                    | Users Net      | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | No      | Internet Access                     |
-| U-3         | Users         | TCP                    | Users Net      | *               | Server Services        | Server Services        | Allow      | Yes     | **Placeholder rule**                |
-| U-4         | Users         | Any                    | Users Net      | Any             | `RFC1918_Networks`     | Any                    | Block      | Yes     | Explicit Deny for Internal Networks |
-| G-1         | Guests        | TCP/UDP                | Guests Net     | Any             | 10.10.40.254           | 53                     | Allow      | No      | DNS                                 |
-| G-2         | Guests        | TCP                    | Guests Net     | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | No      | Internet Access                     |
-| G-3         | Guests        | Any                    | Guests Net     | Any             | `RFC1918_Networks`     | Any                    | Block      | Yes     | Guests Network Isolation            |
+| **Rule ID** | **Interface** | **Proto**              | **Source**     | **Source Port** | **Destination**        | **Destination Port**   | **Action** | **Log** | **Purpose**                            |
+| ----------- | ------------- | ---------------------- | -------------- | --------------- | ---------------------- | ---------------------- | ---------- | ------- | -------------------------------------- |
+| M-1         | Management    | TCP                    | Management Net | Any             | This Firewall          | `Firewall_Admin_Ports` | Allow      | Yes     | Firewall Access                        |
+| M-2         | Management    | TCP                    | Management Net | Any             | `Managed_Subnets`      | `Admin_Ports`          | Allow      | Yes     | Infrastructure<br>Admin                |
+| M-3         | Management    | ICPM<br>(Echo request) | Management Net | Any             | `Internal_Lab_Subnets` | Any                    | Allow      | No      | Troubleshooting                        |
+| M-4         | Management    | TCP/UDP                | Management Net | Any             | 10.10.30.254           | 53                     | Allow      | No      | DNS                                    |
+| M-5         | Management    | TCP                    | Management Net | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | Yes     | Patching & Updates                     |
+| S-1         | Servers       | TCP/UDP                | Users Net      | Any             | 10.10.20.254           | 53                     | Allow      | No      | DNS                                    |
+| S-2         | Servers       | TCP                    | Users Net      | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | No      | Internet Access for patching & updates |
+| S-3         | Servers       | Any                    | Users Net      | Any             | `RFC1918_Networks`     | Any                    | Block      | Yes     | Explicit Deny for Internal Networks    |
+| U-1         | Users         | TCP/UDP                | Users Net      | Any             | 10.10.20.254           | 53                     | Allow      | No      | DNS                                    |
+| U-2         | Users         | TCP                    | Users Net      | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | No      | Internet Access                        |
+| U-3         | Users         | TCP                    | Users Net      | *               | Server Services        | Server Services        | Allow      | Yes     | **Placeholder rule**                   |
+| U-4         | Users         | Any                    | Users Net      | Any             | `RFC1918_Networks`     | Any                    | Block      | Yes     | Explicit Deny for Internal Networks    |
+| G-1         | Guests        | TCP/UDP                | Guests Net     | Any             | 10.10.40.254           | 53                     | Allow      | No      | DNS                                    |
+| G-2         | Guests        | TCP                    | Guests Net     | Any             | `!RFC1918_Networks`    | `Internet_Access`      | Allow      | No      | Internet Access                        |
+| G-3         | Guests        | Any                    | Guests Net     | Any             | `RFC1918_Networks`     | Any                    | Block      | Yes     | Guests Network Isolation               |
 
 * Server rules will be added once the server has been configured.
 
 ### Automatically Generated  Rules Table
 
-These rules are created by OPNsense based on system and interface settings. The table below contains a summary of the automatically generated rules. 
+These rules are created by OPNsense based on system and interface settings. The table below contains a summary of the automatically generated rules. To improve readability, the rules enabling DHCP for each interface have been grouped into one row.
 
 | **Rule ID** | **Interface**       | **Dir**  | **Proto** | **Source**                                     | **Destination**                   | **Dest Port** | **Action** | **Purpose**                                                                                           | **Controlled By**                                       |
 | ----------- | ------------------- | -------- | --------- | ---------------------------------------------- | --------------------------------- | ------------- | ---------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |

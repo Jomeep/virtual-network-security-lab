@@ -14,6 +14,6 @@
 
 | **Device** | **Static IP** |
 | ---------- | ------------- |
-|            |               |
+| lab-server | 10.10.10.10   |
 
 * For specific configurations see [OPNsense](/Docs/Implementation/OPNsense.md)
