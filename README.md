@@ -34,7 +34,6 @@ The current environment contains the following logical network segments:
 
 | **Segment** | **Intended Purpose**                         |
 | ----------- | -------------------------------------------- |
-| LAN         | Backup firewall access                       |
 | Users       | User endpoints and client systems            |
 | Servers     | Server workloads and services                |
 | Management  | Admin access to managed infrastructure       |
@@ -48,28 +47,42 @@ ___
 
 ## Technology Stack
 
+**Virtualization and network**
 * **Oracle VirtualBox** - virtualization and virtual network infrastructure
-* **OPNsense** - firewall, routing, DHCP, and network security policy enforcement
+* **OPNsense 26.7** - firewall, routing, and network security policy enforcement
+  * **Dnsmasq** - DHCP, including address reservations
+  * **Unbound** - DNS resolution and local host overrides
 
-Additional monitoring and detection technologies will be documented as they are implemented
+**Server (Servers segment)**
+* **Ubuntu Server 26.04 LTS** - operating system of the lab server
+* **Apache** - intranet web server, HTTPS with a self-signed certificate (OpenSSL)
+* **UFW** - host-based firewall
+* **OpenSSH** - key-based administrative access from the Management segment
+
+**Endpoints**
+* **Windows 11** - user workstation (Users segment)
+* **Ubuntu 26.04 LTS** - administration machine (Management segment)
+
+Additional technologies will be documented as they are implemented.
 
 ___
 
 ## Current Implementation Status
 
-| **Component**                                  | **Status**  |
-| ---------------------------------------------- | ----------- |
-| VirtualBox environment                         | Completed   |
-| OPNsense interface configuration               | Completed   |
-| Network segment creation                       | Completed   |
-| DHCP configuration                             | Completed   |
-| Initial firewall policies                      | Implemented |
-| Firewall policy validation & documentation     | In progress |
-| Centralized logging                            | Planned     |
-| SIEM integration                               | Planned     |
-| IDS/IPS                                        | Planned     |
-| Compliance detection                           | Planned     |
-| Expanding the lab to include more technologies | Planned     |
+| **Component**                                              | **Status**  |
+| ---------------------------------------------------------- | ----------- |
+| VirtualBox environment                                     | Completed   |
+| OPNsense interface configuration                           | Completed   |
+| Network segment creation                                   | Completed   |
+| DHCP configuration                                         | Completed   |
+| Initial firewall policies                                  | Completed   |
+| Internal server configuration                              | Completed   |
+| Configuration & firewall policy validation & documentation | In progress |
+| Centralized logging                                        | Planned     |
+| SIEM integration                                           | Planned     |
+| IDS/IPS                                                    | Planned     |
+| Compliance detection                                       | Planned     |
+| Expanding the lab to include more technologies             | Planned     |
 
 ____
 ## Security Design Principles
@@ -93,6 +106,8 @@ ___
 * [OPNsense Implementation](Docs/Implementation/OPNsense.md)
 * [Firewall Policy & Traffic Flow](Docs/Architecture/Firewall-policy.md)
 * [IP-addressing](Docs/Architecture/IP-addressing.md)
+* [Server](/Docs/Implementation/Server.md)
+* [Change-log](Change-log.md)
 
 ____
 

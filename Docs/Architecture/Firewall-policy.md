@@ -23,7 +23,7 @@ ____
 
 7. Reviewing rules - Firewall rules must be reviewed as the lab progresses and updated if needed so that only required rules are in place.
 
-8. Change control - Permanent rule changes require authorization and documentation.
+8. Change control - Permanent rule changes require authorisation and documentation.
 
 
 ____
@@ -35,12 +35,15 @@ ____
 
 | **Source** | **Destination**   | **Service**                        | **Action** | **Purpose**                                   |
 | ---------- | ----------------- | ---------------------------------- | ---------- | --------------------------------------------- |
-| Management | Maneged Networks  | Authorized administrative services | Allow      | Network infrastructure administration<br>     |
+| Management | Managed Subnets   | Authorized administrative services | Allow      | Network infrastructure administration<br>     |
 | Management | Internet          | Required outbound services         | Allow      | Internet connectivity from Management network |
-| LAN        | Firewall          | Firewall administration            | Allow      | Failsafe firewall admin access                |
+| Servers    | Internet          | Required outbound services         | Allow      | Internet connectivity for patching & updates  |
+| Servers    | Guest             | Any                                | Block      | No access from servers to guests              |
 | Users      | Internet          | Required outbound services         | Allow      | Internet connectivity from User network       |
 | Users      | Servers           | Specified required services        | Allow      | Application Access                            |
+| Users      | Guests            | Any                                | Block      | No access from users to guests                |
 | Guests     | Internet          | Required outbound services         | Allow      | Internet connectivity from Guest network      |
 | Guests     | Internal Networks | Any                                | Block      | Guest network isolation                       |
+| Firewall   | Any               | Any                                | Allow      | Documented exception to default deny          |
 
 For specific firewall rules see [OPNsense](/Docs/Implementation/OPNsense.md).
