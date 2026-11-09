@@ -4,10 +4,10 @@ This section covers the testing and validation methodology of this lab. The goal
 
 ### Current Scope
 
-| **Area**                        | **Goal**                                                                                                                                                | *Methodology*                                                                                       |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Firewall Configurations & Rules | Verify the OPNsense configurations & firewall rules work as intended and enforce the established [firewall policy](../Architecture/Firewall-policy.md). | Automated testing with [run-tests-script.sh](/Scripts/run-tests-script.sh) & manual review.         |
-| Server Configurations           | Verify the security configurations of the lab [server](../Implementation/Server.md),                                                                    | Automated testing with [server-checks-script.sh](/Scripts/server-checks-script.sh) & manual review. |
+| **Area**                        | **Goal**                                                                                                                                                | *Methodology*                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Firewall Configurations & Rules | Verify the OPNsense configurations & firewall rules work as intended and enforce the established [firewall policy](../Architecture/Firewall-policy.md). | Automated testing with [run-tests-script.sh](/Docs/Validation/Scripts/run-tests-script.sh) & manual review.        |
+| Server Configurations           | Verify the security configurations of the lab [server](../Implementation/Server.md),                                                                    | Automated testing with [server-checks-script.sh](/Docs/Validation/Scripts/server-checks-script.s) & manual review. |
 ### Testing Documentation
 
 * **Firewall Policy & Rules:** [Firewall-tests](Firewall-tests.md)
