@@ -5,12 +5,12 @@ A small-scale virtual enterprise network built with VirtualBox and OPNsense to d
 
 **Project status:** Work in progress  
 
-**Current focus:** Network architecture, segmentation, DHCP, and firewall policy implementation.
+**Current focus:** Firewall policy validation and logging implementation.
 
 ____
 ## Overview
 
-This project simulates a segmented enterprise network in a virtualized environment. OPNsense acts as the central firewall and routing platform, controlling communication between network segments and providing a foundation for additional security monitoring and detection capabilities.
+This project simulates a segmented small-scale business network in a virtualised environment. OPNsense acts as the central firewall and routing platform, controlling communication between network segments and providing a foundation for additional security monitoring and detection capabilities.
 
 The lab is being developed as a hands-on project to document the design, implementations, testing, and on-going improvements of a security-focussed network.
 
@@ -20,8 +20,8 @@ ____
 - Design and implement a segmented enterprise-style network.
 - Apply default-deny and least-privilege firewall policies.
 - Control and document permitted traffic between network segments.
-- Validate network isolation and authorized connectivity.
-- Implement centralized logging and SIEM integration.
+- Validate network isolation and authorised connectivity.
+- Implement centralised logging and SIEM integration.
 - Explore network intrusion detection and prevention.
 - Develop repeatable security validation and compliance checks.
 - Maintain technical documentation and evidence of implementation and testing.
@@ -47,8 +47,8 @@ ___
 
 ## Technology Stack
 
-**Virtualization and network**
-* **Oracle VirtualBox** - virtualization and virtual network infrastructure
+**Virtualisation and network**
+* **Oracle VirtualBox** - virtualisation and virtual network infrastructure
 * **OPNsense 26.7** - firewall, routing, and network security policy enforcement
   * **Dnsmasq** - DHCP, including address reservations
   * **Unbound** - DNS resolution and local host overrides
@@ -62,6 +62,7 @@ ___
 **Endpoints**
 * **Windows 11** - user workstation (Users segment)
 * **Ubuntu 26.04 LTS** - administration machine (Management segment)
+* **Kali 2026.2** - guest workstation (Guests segment)
 
 Additional technologies will be documented as they are implemented.
 
@@ -101,22 +102,33 @@ ___
 
 ## Documentation
 
+**Architecture:**
 * [Network Architecture](Docs/Architecture/Network-architecture.md)
+* [Firewall Policy & Traffic Flow](Docs/Architecture/Firewall-policy.md)
+* [IP Addressing](Docs/Architecture/IP-addressing.md)
+
+**Implementation:**
 * [VirtualBox Implementation](Docs/Implementation/VirtualBox.md)
 * [OPNsense Implementation](Docs/Implementation/OPNsense.md)
-* [Firewall Policy & Traffic Flow](Docs/Architecture/Firewall-policy.md)
-* [IP-addressing](Docs/Architecture/IP-addressing.md)
-* [Server](/Docs/Implementation/Server.md)
-* [Change-log](Change-log.md)
+* [Lab Server](/Docs/Implementation/Server.md)
+
+**Validation:**
+* [Testing](/Docs/Validation/Testing.md)
+* [Scripts](/Docs/Validation/Scripts)
+* [OPNsense Config & Firewall Rule Testing](/Docs/Validation/Firewall-tests)
+* [Server Config Checks](/Docs/Validation/Server-checks.md)
+
+**Change log**
+* [Change Log](Change-log.md)
 
 ____
 
 ## Project Scope and Limitations
 
-This is a virtualized learning and demonstration environment. It is not intended to represent a production deployment or a formally audited compliance environment.
+This is a virtualised learning and demonstration environment. It is not intended to represent a production deployment or a formally audited compliance environment.
 
 ___
 
 ## Disclaimer
 
-This project is provided for educational and portfolio purposes. Testing is conducted within the authorized lab environment.
+This project is provided for educational and portfolio purposes. Testing is conducted within the authorised lab environment.

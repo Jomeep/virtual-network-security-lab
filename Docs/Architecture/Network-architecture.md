@@ -2,10 +2,11 @@
 ## Current Topology
 
 
-![](../../Images/network-topology.drawio.png)
+![](../../Images/network-topology.drawio%201.png)
 
 
-* The chart will be updated as the project advances.
+
+* *The chart will be updated as the project advances.*
 
 See [IP addressing](IP-addressing.md)
 

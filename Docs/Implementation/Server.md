@@ -8,17 +8,18 @@ The lab server hosts a simple intranet site for client machines in the Users seg
 | VM         | Server                                                           |
 | OS         | Ubuntu Server 26.04.1 LTS                                        |
 | Segment    | Servers (10.10.10.0/24)                                          |
-| IP address | 10.10.10.10 (static)                                             |
+| IP address | 10.10.10.10 (DHCP Reservation)                                   |
 | Role       | Intranet web server (Apache)                                     |
 | Site name  | `intranet.lab.internal` (Unbound DNS override)                   |
 | Services   | HTTPS (443/tcp), HTTP (80/tcp, redirects to HTTPS), SSH (22/tcp) |
 
 ### Permitted Access
 
-| **Source**                   | **Port**  | **Purpose**       | **Enforced by**                                   |
-| ---------------------------- | --------- | ----------------- | ------------------------------------------------- |
-| Users (10.10.20.0/24)        | 80, 443   | Intranet access   | OPNsense rule U-3, `ufw`                          |
-| Admin Machine (10.10.30.10)  | 22        | SSH administration | OPNsense rule M-2, `ufw`, `sshd` (`AllowUsers`) |
+| **Source**                  | **Port** | **Purpose**                  | **Enforced by**                                 |
+| --------------------------- | -------- | ---------------------------- | ----------------------------------------------- |
+| Users (10.10.20.0/24)       | 80, 443  | Intranet access              | OPNsense rule U-3, `ufw`                        |
+| Admin Machine (10.10.30.10) | 22       | SSH administration           | OPNsense rule M-2, `ufw`, `sshd` (`AllowUsers`) |
+| Admin Machine (10.10.30.10) | Any      | ICMP Echo from admin machine | OPNsense rule M-3                               |
 
 All other traffic to the server is denied.
 
@@ -73,7 +74,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 ```
 <VirtualHost *:80>
-	 ServerName intranet.lab.local 
+	 ServerName intranet.lab.internal 
 	 Redirect permanent / https://intranet.lab.internal/ 
 </VirtualHost>
 
@@ -131,7 +132,7 @@ sudo ufw status verbose
 ---
 ## SSH Admin Access
 
-* *The key pair was generated on the admin machine and the public key was copied to the server. The private key never leaves the admin machine*
+* *The key pair was generated on the admin machine and the public key was copied to the server. The private key never leaves the admin machine.*
 * *Anything wrapped in `<>` are placeholder values*
 
 **Generating SSH Key Pair:**
@@ -144,24 +145,24 @@ ssh-keygen -t ed25519 -a 100 -f <KEY_FILE> -C <COMMENT>
 **Copying the key to the server:**
 
 ```Shell
-ssh-copy-id -i <PUBLIC_KEY_FILE> <USER>@10.10.10.10
+ssh-copy-id -i <PUBLIC_KEY_FILE> labuntu@10.10.10.10
 ```
 
 **Added a config on the admin machine to make ssh faster:**
 
-* `/.ssh/config`
+* `~/.ssh/config`
 
 ```
-Host <LAB_Server>
+Host labuntu
 	HostName 10.10.10.10
-	User <USER>
+	User labuntu
 	IdentityFile <KEYFILE>
 	IdentitiesOnly yes
 ```
 
 ### Hardening the SSH daemon (server)
 
-* `/etc/ssh/sshd_config.d/01-hardening-conf`
+* `/etc/ssh/sshd_config.d/01-hardening.conf`
 
 ```
 PasswordAuthentication no 

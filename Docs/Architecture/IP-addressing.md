@@ -19,13 +19,13 @@
 
 ### Reserved Address Table
 
-* *The static IPs are assigned via Dnsmasq reservation*
+* *These IPs are assigned via Dnsmasq reservation*
 
-| **Host**      | **Segment** | **IP Address** |
-| ------------- | ----------- | -------------- |
-| Lab Server    | Servers     | 10.10.10.10    |
-| Admin Machine | Management  | 10.10.30.10    |
+| **Host**                          | **Segment** | **IP Address** |
+| --------------------------------- | ----------- | -------------- |
+| Lab Server (labuntu)              | Servers     | 10.10.10.10    |
+| Admin Machine (labmin-Virtualbox) | Management  | 10.10.30.10    |
 
-![](../../Images/Reserved-IPs.png)
+![](../../Images/Reserverd-IPs.png)
 
 * For specific configurations see [OPNsense](/Docs/Implementation/OPNsense.md)

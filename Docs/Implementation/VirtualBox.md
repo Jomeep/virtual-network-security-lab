@@ -8,12 +8,13 @@ Oracle VirtualBox was chosen as the hypervisor for this project for the followin
 ## Machine Inventory
 
 
-| **VM**      | **Operating System**        | **Role**          | **Attached Network**             |
-| ----------- | --------------------------- | ----------------- | -------------------------------- |
-| OPNsense    | OPNsense<br>(26.7.4)        | Firewall / router | NAT, Users, Servers, MGMT, Guest |
-| Workstation | Windows 11(26H2)            | User endpoint     | Users                            |
-| Server      | Ubuntu Server (26.04.1 LTS) | Server            | Servers                          |
-| Admin       | Ubuntu (26.04.1 LTS)        | Admin Machine     | MGMT                             |
+| **VM**      | **Operating System**        | **Role**                | **Attached Network**             |
+| ----------- | --------------------------- | ----------------------- | -------------------------------- |
+| OPNsense    | OPNsense<br>(26.7.4)        | Firewall / router       | NAT, Users, Servers, MGMT, Guest |
+| Workstation | Windows 11(26H2)            | User endpoint           | Users                            |
+| Server      | Ubuntu Server (26.04.1 LTS) | Server                  | Servers                          |
+| Admin       | Ubuntu (26.04.1 LTS)        | Admin Machine           | MGMT                             |
+| Guest       | Kali (2026.2)               | Guests network endpoint | Guest                            |
 
 ___
 

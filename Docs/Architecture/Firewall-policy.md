@@ -35,8 +35,9 @@ ____
 
 | **Source** | **Destination**   | **Service**                        | **Action** | **Purpose**                                   |
 | ---------- | ----------------- | ---------------------------------- | ---------- | --------------------------------------------- |
-| Management | Managed Subnets   | Authorized administrative services | Allow      | Network infrastructure administration<br>     |
+| Management | Managed Subnets   | Authorised administrative services | Allow      | Network infrastructure administration<br>     |
 | Management | Internet          | Required outbound services         | Allow      | Internet connectivity from Management network |
+| Management | Firewall          | Firewall GUI & SSH                 | Allow      | Firewall Administration                       |
 | Servers    | Internet          | Required outbound services         | Allow      | Internet connectivity for patching & updates  |
 | Servers    | Guest             | Any                                | Block      | No access from servers to guests              |
 | Users      | Internet          | Required outbound services         | Allow      | Internet connectivity from User network       |

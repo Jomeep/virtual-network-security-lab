@@ -1,8 +1,6 @@
 
 ## Interfaces
 
-
-
 | **Interface Name** | **VirtualBox Network** | **Device** | **Interface IP Assignment** | **DHCP Server** |
 | ------------------ | ---------------------- | ---------- | --------------------------- | --------------- |
 | WAN                | NAT                    | em0        | DHCP                        | No              |
@@ -11,6 +9,7 @@
 | Management         | MGMT                   | em3        | Static IPv4                 | Yes             |
 | Guests             | Guest                  | em4        | Static IPv4                 | Yes             |
 
+---
 ## Firewall Rules
 
 ### Alias Table
@@ -22,7 +21,7 @@
 | `Managed_Subnets`      | Network(s) | 10.10.10.0/24, 10.10.20.0/24, 10.10.30.0/24                | Segments Management can administer (Servers, Users, Management) |
 | `Admin_Ports`          | Port(s)    | 22, 443, 3389                                              | Host administration (SSH, HTTPS, RDP)                           |
 | `Firewall_Admin_Ports` | Port(s)    | 22, 443                                                    | OPNsense administration                                         |
-| `Internet_Access`      | Port(s)    | 80, 443                                                    | Permitted outbound web traffic                                  |
+| `Web_Ports`            | Port(s)    | 80, 443                                                    | Permitted outbound web traffic                                  |
 
 ### Custom Rules Table
 
@@ -38,16 +37,16 @@
 | M-2         | Management    | TCP                    | Management Net | Any             | `Managed_Subnets`   | `Admin_Ports`          | Allow      | Yes     | Infrastructure<br>Admin                |
 | M-3         | Management    | ICMP<br>(Echo request) | Management Net | Any             | `Managed_Subnets`   | Any                    | Allow      | No      | Troubleshooting                        |
 | M-4         | Management    | TCP/UDP                | Management Net | Any             | 10.10.30.254        | 53                     | Allow      | No      | DNS                                    |
-| M-5         | Management    | TCP                    | Management Net | Any             | `!RFC1918_Networks` | `Internet_Access`      | Allow      | Yes     | Patching & Updates                     |
+| M-5         | Management    | TCP                    | Management Net | Any             | `!RFC1918_Networks` | `Web_Ports`            | Allow      | Yes     | Patching & Updates                     |
 | S-1         | Servers       | TCP/UDP                | Servers Net    | Any             | 10.10.10.254        | 53                     | Allow      | No      | DNS                                    |
-| S-2         | Servers       | TCP                    | Servers Net    | Any             | `!RFC1918_Networks` | `Internet_Access`      | Allow      | No      | Internet Access for patching & updates |
+| S-2         | Servers       | TCP                    | Servers Net    | Any             | `!RFC1918_Networks` | `Web_Ports`            | Allow      | No      | Internet Access for patching & updates |
 | S-3         | Servers       | Any                    | Servers Net    | Any             | `RFC1918_Networks`  | Any                    | Block      | Yes     | Explicit Deny for Internal Networks    |
 | U-1         | Users         | TCP/UDP                | Users Net      | Any             | 10.10.20.254        | 53                     | Allow      | No      | DNS                                    |
-| U-2         | Users         | TCP                    | Users Net      | Any             | `!RFC1918_Networks` | `Internet_Access`      | Allow      | No      | Internet Access                        |
-| U-3         | Users         | TCP                    | Users Net      | Any             | 10.10.10.10         | `Internet_Access`      | Allow      | Yes     | Access to Intranet                     |
+| U-2         | Users         | TCP                    | Users Net      | Any             | `!RFC1918_Networks` | `Web_Ports`            | Allow      | No      | Internet Access                        |
+| U-3         | Users         | TCP                    | Users Net      | Any             | 10.10.10.10         | `Web_Ports`            | Allow      | Yes     | Access to Intranet                     |
 | U-4         | Users         | Any                    | Users Net      | Any             | `RFC1918_Networks`  | Any                    | Block      | Yes     | Explicit Deny for Internal Networks    |
 | G-1         | Guests        | TCP/UDP                | Guests Net     | Any             | 10.10.40.254        | 53                     | Allow      | No      | DNS                                    |
-| G-2         | Guests        | TCP                    | Guests Net     | Any             | `!RFC1918_Networks` | `Internet_Access`      | Allow      | No      | Internet Access                        |
+| G-2         | Guests        | TCP                    | Guests Net     | Any             | `!RFC1918_Networks` | `Web_Ports`            | Allow      | No      | Internet Access                        |
 | G-3         | Guests        | Any                    | Guests Net     | Any             | `RFC1918_Networks`  | Any                    | Block      | Yes     | Guests Network Isolation               |
 
 
@@ -67,6 +66,7 @@ These rules are created by OPNsense based on system and interface settings. The 
 | A-8         | WAN                 | In       | Any       | RFC1918, loopback, CGNAT, link-local, IPv6 ULA | Any                               | Any           | Block      | Blocks private-address sources arriving on the WAN                                                    | Interfaces > WAN > Block private networks               |
 | A-9         | Each DHCP interface | In       | UDP       | Any (port 68)                                  | 255.255.255.255 and This Firewall | 67            | Allow      | Lets clients reach the DHCP server                                                                    | DHCP server enabled per interface                       |
 
+---
 ## Config Notes
 
 ### Interface IP assignment
@@ -79,7 +79,7 @@ Unbound is used to handle DNS in this lab. The enabled interfaces has been left 
 
 ![](../../Images/Unbound.png)
 
-****
+
 ### DHCP
 
 Dnsmasq is used for DHCP in this lab for the following reasons: 
@@ -91,4 +91,4 @@ Dnsmasq is used for DHCP in this lab for the following reasons:
 
 
 
-![](../../Images/DHCP-ranges%201.png)
+![](../../Images/DHCP-ranges.png)
