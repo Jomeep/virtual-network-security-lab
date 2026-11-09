@@ -1,6 +1,6 @@
 ## Overview
 
-The server configurations were checked with a combination of automated testing and manual verification. Automated testing was conducted with the `server-checks.sh` script. For further details about the script, see [server-checks](/Scripts/server-checks-script.sh).
+The server configurations were checked with a combination of automated testing and manual verification. Automated testing was conducted with the `server-checks.sh` script. For further details about the script, see [server-checks](/Docs/Validation/Scripts/server-checks-script.sh).
 
 ---
 ## Initial Checks
