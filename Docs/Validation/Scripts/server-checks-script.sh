@@ -1,6 +1,6 @@
- *Disclaimer: Claude was used to aid with the generation of this script. It was manually reviewed before use.*
+#!/usr/bin/env bash
 
- #!/usr/bin/env bash
+#Disclaimer: Claude was used to aid with the generation of this script. It was manually reviewed before use.
 
 # Checks the *effective* server configuration against Server.md.
 

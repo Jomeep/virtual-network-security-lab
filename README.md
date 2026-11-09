@@ -115,7 +115,7 @@ ___
 **Validation:**
 * [Testing](/Docs/Validation/Testing.md)
 * [Scripts](/Docs/Validation/Scripts)
-* [OPNsense Config & Firewall Rule Testing](/Docs/Validation/Firewall-tests)
+* [OPNsense Config & Firewall Rule Testing](/Docs/Validation/Firewall-tests.md)
 * [Server Config Checks](/Docs/Validation/Server-checks.md)
 
 **Change log**
